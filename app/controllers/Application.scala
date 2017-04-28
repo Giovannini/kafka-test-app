@@ -47,9 +47,9 @@ class Application @Inject() (
 
   def putDataIntoTopic: Action[JsValue] = {
     Action.async(parse.json) { request =>
-      (request.body \ "message").validate[String] match {
-        case JsSuccess(m, _) =>
-          val record = new ProducerRecord[Array[Byte], String](topic1, 0, null, m)
+      ((request.body \ "x").validate[Int], (request.body \ "y").validate[Int]) match {
+        case (JsSuccess(x, _), JsSuccess(y, _)) =>
+          val record = new ProducerRecord[Array[Byte], String](topic1, 0, null, s"$x;$y")
           producerSettings.createKafkaProducer().send(record)
           Future.successful(Ok(Json.obj()))
 
