@@ -1,0 +1,12 @@
+{
+  "name": "kafkapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run copy",
+    "copy": "cp index.js ../public/javascripts/index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
